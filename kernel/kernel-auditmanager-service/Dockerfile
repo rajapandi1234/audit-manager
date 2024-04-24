@@ -23,6 +23,7 @@ ARG container_user_group=mosip
 ARG container_user_uid=1001
 ARG container_user_gid=1001
 
+# can be passed during Docker build as build time environment for label related addition to docker.
 ARG SOURCE
 ARG COMMIT_HASH
 ARG COMMIT_ID
@@ -46,10 +47,13 @@ ENV artifactory_url_env=${artifactory_url}
 # environment variable to pass iam_adapter url, at docker runtime
 ENV iam_adapter_url_env=${iam_adapter_url}
 
+# environment variable to pass to set workdir.
 ENV work_dir=/home/${container_user}
 
+# environment variable to pass for setting loader path
 ENV loader_path_env=${loader_path}
 
+# Labels can be added to the image for metadata purposes such as source, commit hash, commit ID, and build time.
 LABEL source=${SOURCE}
 LABEL commit_hash=${COMMIT_HASH}
 LABEL commit_id=${COMMIT_ID}
@@ -63,6 +67,7 @@ RUN apk -q update \
 && mkdir -p ${loader_path} \
 && chown -R ${container_user}:${container_user} /home/${container_user}
 
+#copy the jar to container
 COPY ./target/kernel-auditmanager-service-*.jar kernel-auditmanager-service.jar
 
 # set working directory for the user
@@ -71,8 +76,10 @@ WORKDIR /home/${container_user}
 # select container user for all tasks
 USER ${container_user_uid}:${container_user_gid}
 
+# can expose required port
 EXPOSE 8081
 
+# the command to run when the container starts
 CMD if [ "$is_glowroot_env" = "present" ]; then \
     wget -q --show-progress "${artifactory_url_env}"/artifactory/libs-release-local/io/mosip/testing/glowroot.zip ; \
     unzip glowroot.zip ; \
