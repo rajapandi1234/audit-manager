@@ -68,7 +68,7 @@ RUN apk -q update \
 && chown -R ${container_user}:${container_user} /home/${container_user}
 
 #copy the jar to container
-COPY ./target/kernel-auditmanager-service-*.jar kernel-auditmanager-service.jar
+COPY ./target/kernel-auditmanager-service-*.jar /home/${container_user}/kernel-auditmanager-service.jar
 
 # set working directory for the user
 WORKDIR /home/${container_user}
