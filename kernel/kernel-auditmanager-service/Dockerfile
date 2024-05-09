@@ -15,7 +15,7 @@ ARG is_glowroot
 # can be passed during Docker build as build time environment for artifactory URL
 ARG artifactory_url
 
-ARG loader_path=${work_dir}/additional_jars/
+ARG loader_path
 
 # can be passed during Docker build as build time environment for github branch to pickup configuration from.
 ARG container_user=mosip
@@ -51,7 +51,7 @@ ENV iam_adapter_url_env=${iam_adapter_url}
 ENV work_dir=/home/${container_user}
 
 # environment variable to pass for setting loader path
-ENV loader_path_env=${loader_path}
+ENV loader_path_env=${work_dir}/additional_jars/
 
 # Labels can be added to the image for metadata purposes such as source, commit hash, commit ID, and build time.
 LABEL source=${SOURCE}
@@ -64,11 +64,11 @@ RUN apk -q update \
 && apk add -q unzip wget \
 && addgroup -g ${container_user_gid} ${container_user_group} \
 && adduser -s /bin/sh -u ${container_user_uid} -G ${container_user_group} -h /home/${container_user} --disabled-password ${container_user} \
-&& mkdir -p ${loader_path} \
+&& mkdir -p ${loader_path_env} \
 && chown -R ${container_user}:${container_user} /home/${container_user}
 
 #copy the jar to container
-COPY ./target/kernel-auditmanager-service-*.jar kernel-auditmanager-service.jar
+COPY ./target/kernel-auditmanager-service-*.jar /home/${container_user}/kernel-auditmanager-service.jar
 
 # set working directory for the user
 WORKDIR /home/${container_user}
