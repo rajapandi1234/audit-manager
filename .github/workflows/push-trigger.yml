@@ -92,4 +92,4 @@ jobs:
         - SERVICE_NAME: 'kernel-auditmanager-service'   
      with:
       service_name: ${{ matrix.SERVICE_NAME }}
-      version: 'develop'
+      version: ${{ github.ref_name }}
