@@ -4,13 +4,14 @@
 # Audit Manager
 
 ## Overview
-This repository contains modules used for audit related funtionalities. 
+This repository contains modules used for audit related functionalities. 
 
 ## Databases
 Refer to [SQL scripts](db_scripts).
 
 ## Build & run (for developers)
-The project requires JDK 1.11. 
+The project requires JDK 1.21.
+and mvn version - 3.9.6.
 1. Build and install:
     ```
     $ cd kernel
