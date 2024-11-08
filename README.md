@@ -10,7 +10,7 @@ This repository contains modules used for audit related functionalities.
 Refer to [SQL scripts](db_scripts).
 
 ## Build & run (for developers)
-The project requires JDK 1.21.
+The project requires JDK 21.0.
 and mvn version - 3.9.6.
 1. Build and install:
     ```
@@ -24,7 +24,7 @@ and mvn version - 3.9.6.
     ```
 
 ## Deploy
-To deploy service on Kubernetes cluster using Dockers refer to [Sandbox Deployment](https://docs.mosip.io/1.2.0/deployment/sandbox-deployment).
+To deploy service on Kubernetes cluster using Dockers refer to [Sandbox Deployment](https://docs.mosip.io/1.2.0/deploymentnew/v3-installation).
 
 ## Test
 Automated functional tests available in [Functional Tests repo](https://github.com/mosip/mosip-functional-tests).
