@@ -17,23 +17,17 @@ and mvn version - 3.9.6.
     $ cd kernel
     $ mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true
     ```
-1. Build Docker for a service:
+2. Build Docker for a service:
     ```
     $ cd <service folder>
     $ docker build -f Dockerfile
     ```
 
-## Configuration files
+## Configuration
 Kernel Audit Manager Service uses the following configuration files that are accessible in this [repository](https://github.com/mosip/mosip-config/tree/master).
 Please refer to the required released tagged version for configuration.
-```
-application-default.properties
-kernel-default.properties
-```
-
-## Configuration
-[Configuration-Application](https://github.com/mosip/mosip-config/blob/master/application-default.properties) and
-[Configuration-Kernel](https://github.com/mosip/mosip-config/blob/master/kernel-default.properties) defined here.
+1. [Configuration-Application](https://github.com/mosip/mosip-config/blob/master/application-default.properties)
+2. [Configuration-Kernel](https://github.com/mosip/mosip-config/blob/master/kernel-default.properties)
 
 ## Deploy
 To deploy service on Kubernetes cluster using Dockers refer to [Sandbox Deployment](https://docs.mosip.io/1.2.0/deploymentnew/v3-installation).
